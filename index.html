@@ -19,9 +19,9 @@
       color: #3C4043;
     }
     header {
-      background: #1a73e8;
+      background: linear-gradient(135deg, #1A73E8 0%, #0B1C2C 100%);
       color: white;
-      padding: 2.5rem 1rem;
+      padding: 2.75rem 1rem 2.25rem;
       text-align: center;
     }
     header h1 {
@@ -47,6 +47,22 @@
       margin-bottom: 1rem;
       font-size: 1.6rem;
     }
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #FFFFFFCC;
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #eaeaea;
+      padding: 0.5rem 0.75rem;
+    }
+    .topnav a { color: #0B1C2C; text-decoration: none; }
+    .btn { display:inline-block; padding:0.75rem 1.2rem; border-radius:8px; text-decoration:none; font-weight:600; }
+    .btn-primary { background:#1A73E8; color:#FFFFFF; }
+    .btn-accent { background:#00BFA6; color:#0B1C2C; }
+    .btn-sm { padding:0.5rem 0.8rem; border-radius:6px; }
+    .btn:hover { filter: brightness(0.95); }
+    .hero-ctas { margin-top: 1rem; display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; }
     ul {
       list-style: none;
       padding: 0;
@@ -149,13 +165,22 @@
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       padding: 1rem 1.25rem;
+      transition: transform 160ms ease, box-shadow 160ms ease;
     }
+    .service-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
     .service-card h3 {
       margin-top: 0;
       color: #1A73E8;
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
+    .why-box { background:#FFFFFF; border:1px solid #eaeaea; border-radius:10px; padding:1rem 1.25rem; }
+    .packages-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .package .price { font-size:1.05rem; margin-top:0.75rem; }
+    .benefits-list { list-style:none; padding:0; margin:0 0 1rem 0; }
+    .benefits-list li { margin:0.35rem 0; }
+    .about-inner { display:flex; gap:1rem; align-items:center; }
+    .about-inner img { width:72px; height:72px; border-radius:50%; object-fit:cover; }
     .about {
       background: #FFFFFF;
       border-radius: 8px;
@@ -207,12 +232,17 @@
     <h1>AI Consulting Services for Businesses Nationwide</h1>
     <p>AI Consulting Solutions — AI services for real estate, e‑commerce, law, and healthcare.</p>
     <p class="subheadline">We help realtors, e-commerce stores, and small businesses use AI to automate work, boost sales, and scale effortlessly.</p>
+    <div class="hero-ctas">
+      <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2KekfN_KOpw96crHk-ziVSGHe_mlZxdbvuI_1rF-AxZCBMq0jY3kSitW0-Gt6wYvYwPoqi_7Xd?gv=true" class="btn btn-accent">Book Free Consultation</a>
+      <a href="#services" class="btn btn-primary">View Services</a>
+    </div>
   </header>
-  <nav class="topnav" style="max-width:900px;margin:0.5rem auto 0; text-align:center;">
+  <nav class="topnav" style="max-width:900px;margin:0 auto; text-align:center;">
     <a href="/" style="margin:0 0.5rem;">Home</a>
     <a href="/services/" style="margin:0 0.5rem;">Services</a>
     <a href="#faq" style="margin:0 0.5rem;">FAQ</a>
     <a href="#how-it-works" style="margin:0 0.5rem;">How It Works</a>
+    <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2KekfN_KOpw96crHk-ziVSGHe_mlZxdbvuI_1rF-AxZCBMq0jY3kSitW0-Gt6wYvYwPoqi_7Xd?gv=true" class="btn btn-accent btn-sm" style="margin-left:0.5rem;">Book Call</a>
   </nav>
 
   <section class="trust">
@@ -235,6 +265,7 @@
           <li><strong>AI Solution:</strong> Auto property descriptions, 24/7 chatbot</li>
           <li><strong>Benefit:</strong> Faster response, more qualified leads</li>
         </ul>
+        <p class="price"><strong>Starting at:</strong> $2,000 setup + $1,000/mo</p>
       </div>
       <div class="service-card">
         <h3>🛒 E‑Commerce</h3>
@@ -243,6 +274,7 @@
           <li><strong>AI Solution:</strong> SEO copy, AI support, email flows</li>
           <li><strong>Benefit:</strong> Higher conversions, lower workload</li>
         </ul>
+        <p class="price"><strong>Starting at:</strong> $750/mo</p>
       </div>
       <div class="service-card">
         <h3>⚖️ Law</h3>
@@ -251,6 +283,7 @@
           <li><strong>AI Solution:</strong> Drafting aids, intake assistants</li>
           <li><strong>Benefit:</strong> Save hours, improve client experience</li>
         </ul>
+        <p class="price"><strong>Starting at:</strong> $1,500/mo</p>
       </div>
       <div class="service-card">
         <h3>🏥 Healthcare</h3>
@@ -259,43 +292,50 @@
           <li><strong>AI Solution:</strong> Scheduling, triage FAQs, reminders</li>
           <li><strong>Benefit:</strong> Better throughput, happier patients</li>
         </ul>
+        <p class="price"><strong>Starting at:</strong> $1,500/mo</p>
       </div>
     </div>
   </section>
 
-  <section id="why-us">
+  <section id="why-us" class="why-box">
     <h2>Why Work With Us?</h2>
     <ul>
-      <li>🚀 Cut 20+ hours of repetitive work each week</li>
+      <li>⏱️ Cut 20+ hours of repetitive work each week</li>
       <li>💰 Increase sales conversions with optimized AI content</li>
       <li>🤖 Automate customer support & lead follow-up</li>
-      <li>🌎 Work with us 100% remotely — anywhere in the world</li>
+      <li>🌍 Work with us 100% remotely — anywhere in the world</li>
     </ul>
+    <p class="muted" style="margin-top:0.75rem;">Helping professionals across the U.S.</p>
   </section>
 
   <section id="packages">
-    <div class="package">
-      <h3>🌎 E-Commerce AI Content Package</h3>
-      <p class="muted">Ideal for Shopify, Amazon, Etsy, and online brands</p>
-      <ul>
-        <li>✅ Product descriptions that sell</li>
-        <li>✅ AI ad copy & social posts</li>
-        <li>✅ 24/7 customer service chatbot</li>
-        <li>✅ Automated email sequences</li>
-      </ul>
-      <p><strong>💵 Starting at $750/month</strong></p>
-    </div>
+    <h2>Packages</h2>
+    <div class="packages-grid">
+      <div class="package">
+        <h3>🌎 E‑Commerce AI Content Package</h3>
+        <p class="muted">Ideal for Shopify, Amazon, Etsy, and online brands</p>
+        <ul class="benefits-list">
+          <li>✅ Product descriptions that sell</li>
+          <li>✅ AI ad copy & social posts</li>
+          <li>✅ 24/7 customer service chatbot</li>
+          <li>✅ Automated email sequences</li>
+        </ul>
+        <p class="price"><strong>Starting at $750/month</strong></p>
+        <p><a href="#booking-inline" class="btn btn-primary">Book Call to Get Started</a></p>
+      </div>
 
-    <div class="package">
-      <h3>🇺🇸 Real Estate AI Automation Package</h3>
-      <p class="muted">Perfect for realtors, brokers, and property managers</p>
-      <ul>
-        <li>🏡 Automatic property listing descriptions</li>
-        <li>📱 24/7 AI chatbot for buyer/seller inquiries</li>
-        <li>📧 Automated lead follow-up campaigns</li>
-        <li>📊 AI-generated market reports</li>
-      </ul>
-      <p><strong>💵 Setup: $2,000 + Monthly: $1,000–$2,500</strong></p>
+      <div class="package">
+        <h3>🇺🇸 Real Estate AI Automation Package</h3>
+        <p class="muted">Perfect for realtors, brokers, and property managers</p>
+        <ul class="benefits-list">
+          <li>🏡 Automatic property listing descriptions</li>
+          <li>📱 24/7 AI chatbot for buyer/seller inquiries</li>
+          <li>📧 Automated lead follow-up campaigns</li>
+          <li>📊 AI-generated market reports</li>
+        </ul>
+        <p class="price"><strong>$2,000 setup + $1,000–$2,500/month</strong></p>
+        <p><a href="#booking-inline" class="btn btn-primary">Book Call to Get Started</a></p>
+      </div>
     </div>
   </section>
 
@@ -306,6 +346,7 @@
       <li><strong>AI Setup & Launch</strong> → We implement tools tailored to your workflow</li>
       <li><strong>Scale & Support</strong> → Ongoing optimization & updates</li>
     </ol>
+    <p style="text-align:center; margin-top:1rem;"><a href="#booking-inline" class="btn btn-accent">Book Your Free AI Consultation</a></p>
   </section>
 
   <section class="cta">
@@ -330,8 +371,12 @@
   </section>
 
   <section id="booking-inline">
-    <h2>Prefer to book inline?</h2>
-    <p>Use the embedded scheduler below.</p>
+    <h2>Pick a Time That Works for You</h2>
+    <ul class="benefits-list" style="margin:0.5rem 0 1rem 0;">
+      <li>✔ Save 10+ hours a week</li>
+      <li>✔ Cut admin costs by 30%</li>
+      <li>✔ Get AI tailored to your industry</li>
+    </ul>
     <div class="embed-card">
       <!-- Google Calendar Appointment Scheduling begin -->
       <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2KekfN_KOpw96crHk-ziVSGHe_mlZxdbvuI_1rF-AxZCBMq0jY3kSitW0-Gt6wYvYwPoqi_7Xd?gv=true" style="border: 0; width: 100%; height: 600px;" frameborder="0"></iframe>
@@ -341,7 +386,8 @@
 
   <section id="about">
     <h2>About Me</h2>
-    <div class="about">
+    <div class="about about-inner">
+      <img src="https://via.placeholder.com/72" alt="Your headshot">
       <p>“I help businesses harness the power of AI to save time, cut costs, and grow faster. My focus is on making AI practical — not hype — so realtors, e-commerce brands, law firms, and healthcare clinics can work smarter, not harder. My mission is simple: deliver AI solutions that create real results, without the confusion.”</p>
     </div>
   </section>
@@ -372,6 +418,10 @@
       <summary>What if I’ve never used AI before?</summary>
       <p>That’s perfect. Most of our clients come in with little to no AI experience. We’ll guide you step by step, set everything up, and train your team so you feel confident using it.</p>
     </details>
+    <details>
+      <summary>How much does this cost?</summary>
+      <p>Our packages start at $750/month (E‑Commerce). Real Estate automation typically begins at $2,000 setup with $1,000–$2,500/month. We’ll tailor the plan and pricing to your needs during the free consultation.</p>
+    </details>
   </section>
 
   <section class="cta">
@@ -398,6 +448,7 @@
   <footer>
     <p>AI Consulting Solutions – Nationwide & Worldwide</p>
     <p>Contact: <a href="mailto:info@getaiconsultingsolutions.com" style="color:#FFFFFF; text-decoration: underline;">info@getaiconsultingsolutions.com</a> · <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; text-decoration: underline;">LinkedIn</a></p>
+    <p style="opacity:0.9; font-size:0.9rem;">We use AI responsibly — tools are designed to assist professionals, not replace them.</p>
     <p>© Keldrick Dickey / AI Consulting Services</p>
   </footer>
 </body>
